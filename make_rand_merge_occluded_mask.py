@@ -2,10 +2,9 @@ import os
 import cv2
 import torch
 
-data_root = './dataset/Inshop_Random_Merge_Occluded/rand_merge_occluded_mask/'
+data_root = './dataset/Inshop_Random_Merge_Occluded/rand_merge_occluded_img/'
 dirs = os.listdir(data_root)
-new_data_root = './dataset/Inshop_Random_Merge_Occluded/rand_merge_occluded_img/'
-# new_data_root = './dataset/Inshop_Random_Merge_Occluded/rand_merge_occluded_mask/'
+new_data_root = './dataset/Inshop_Random_Merge_Occluded/rand_merge_occluded_mask/'
 torch.manual_seed(1000)
 
 img_path_list = ['./dataset/Inshop_50_Center_Black_Square/Inshop_50_Center_Black_Square_img/',
@@ -45,8 +44,7 @@ for dir in dirs:
                         imgs = os.listdir(img)
                         for name in imgs:
                             data_num = torch.randint(0, 6, (1,)).item()
-                            # cur_root = ann_path_list[data_num]
-                            cur_root = img_path_list[data_num]
+                            cur_root = ann_path_list[data_num]
                             img_name = os.path.join(cur_root, dir, cat, i, name)
                             read_img = cv2.imread(img_name) # (256, 256, 3)
                             # cv2.imshow('img', read_img)
